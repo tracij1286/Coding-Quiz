@@ -4,14 +4,14 @@ body {
     background-color: #f2f2f2; 
 }
 
-h1, 
-h2 {
-    color: #313740;
+h1, h2 {
+    color: #b873b3;
     font-family: 'Montserrat', sans-serif;
 }
 
+
 a {
-    color: #3290A6;
+    color: #be65ae;
     font-family: 'Archivo', sans-serif;
 }
 
@@ -23,7 +23,7 @@ a:hover {
 .btn:focus, .btn:active, .btn:visited {
     outline: none !important;
     box-shadow: none !important;
-    background-color: #343a40;
+    background-color: #b873b3;
 }
 
 #finalScore {
@@ -46,5 +46,5 @@ p {
 
 #answerCheck {
     font-style: italic;
-    color: #4D5159;
+    color: #9f5f89;
 }
