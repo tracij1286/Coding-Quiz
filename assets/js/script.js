@@ -33,7 +33,7 @@
     }
 ];
 
-// grab references to elements
+// references to elements
 var timer = document.getElementById("timer");
 var timeLeft = document.getElementById("timeLeft");
 var timesUp = document.getElementById("timesUp");
@@ -68,11 +68,9 @@ var questionNum = 0;
 var scoreResult;
 var questionIndex = 0;
 
-/**
- * FUNCTIONS
- */
 
-// WHEN I click the start button, timer starts
+
+// functions
 var totalTime = 61;
 function newQuiz() {
     questionIndex = 0;
@@ -99,10 +97,8 @@ function newQuiz() {
     showQuiz();
 };
 
-// console.log(questions[questionIndex].question);
-// console.log(questions[questionIndex].choices);
 
-// then presented with questions and choices
+// questions and choices
 function showQuiz() {
     nextQuestion();
 }
@@ -115,14 +111,14 @@ function nextQuestion() {
     choiceD.textContent = questions[questionIndex].choices[3];
 }
 
-// after question is answered, show if correct or wrong
+
 function checkAnswer(answer) {
 
     var lineBreak = document.getElementById("lineBreak");
     lineBreak.style.display = "block";
     answerCheck.style.display = "block";
 
-    if (questions[questionIndex].answer === questions[questionIndex].choices[answer]) {
+    if (questions[questionIndex].answer == questions[questionIndex].choices[answer]) {
         // correct answer, add 1 score to final score
         correctAns++;
         // console.log(correctAns);
@@ -169,7 +165,7 @@ function storeHighScores(event) {
     event.preventDefault();
 
     // stop function is initial is blank
-    if (initialInput.value === "") {
+    if (initialInput.value == "") {
         alert("Please enter your initials!");
         return;
     } 
@@ -180,7 +176,7 @@ function storeHighScores(event) {
     summary.style.display = "none";
     highScoreSection.style.display = "block";   
 
-    // store scores into local storage
+    // store scoring scores
     var savedHighScores = localStorage.getItem("high scores");
     var scoresArray;
 
