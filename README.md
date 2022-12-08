@@ -15,7 +15,15 @@ I learned to utilize javascript elements, functions and strings and how to store
 
 ## Credits (Sited Pages)
 
-List your collaborators, if any, with links to their GitHub profiles.
+
+
+https://www.codingnepalweb.com/quiz-app-with-timer-javascript/
+
+https://www.youtube.com/watch?v=pQr4O1OITJo
+
+https://www.edureka.co/blog/creating-an-online-quiz-application-implementing-countdown-timer/
+
+
 
 ## Link to live site
 

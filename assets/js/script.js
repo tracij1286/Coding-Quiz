@@ -35,8 +35,8 @@
 
 // references to elements
 var timer = document.getElementById("timer");
-var timeLeft = document.getElementById("timeLeft");
 var timesUp = document.getElementById("timesUp");
+var timeRemaining = document.getElementById("timeRemaining");
 
 var startDiv = document.getElementById("start");
 var startQuizBtn = document.getElementById("start-quiz-button");
@@ -52,7 +52,7 @@ var answerCheck = document.getElementById("answerCheck");
 var summary = document.getElementById("summary");
 var submitInitialBtn = document.getElementById("submitInitialBtn");
 var initialInput = document.getElementById("initialInput");
-var everything = document.getElementById("everything");
+var all = document.getElementById("all");
 
 var highScoreSection = document.getElementById("highScoreSection");
 var finalScore = document.getElementById("finalScore");
@@ -75,7 +75,7 @@ var totalTime = 61;
 function newQuiz() {
     questionIndex = 0;
     totalTime = 60;
-    timeLeft.textContent = totalTime;
+    timeRemaining.textContent = totalTime;
     initialInput.textContent = "";
 
     startDiv.style.display = "none";
@@ -85,7 +85,7 @@ function newQuiz() {
 
     var startTimer = setInterval(function() {
         totalTime--;
-        timeLeft.textContent = totalTime;
+        timeRemaining.textContent = totalTime;
         if(totalTime <= 0) {
             clearInterval(startTimer);
             if (questionIndex < questions.length - 1) {
@@ -98,7 +98,7 @@ function newQuiz() {
 };
 
 
-// questions and choices
+// questions/choices
 function showQuiz() {
     nextQuestion();
 }
@@ -119,23 +119,23 @@ function checkAnswer(answer) {
     answerCheck.style.display = "block";
 
     if (questions[questionIndex].answer == questions[questionIndex].choices[answer]) {
-        // correct answer, add 1 score to final score
+        //  adds 1 score to final score
         correctAns++;
-        // console.log(correctAns);
+        
         answerCheck.textContent = "Correct!";
     } else {
-        // wrong answer, deduct 10 second from timer
+        // deducts 10 second from timer
         totalTime -= 10;
-        timeLeft.textContent = totalTime;
+        timeRemaining.textContent = totalTime;
         answerCheck.textContent = "Wrong! The correct answer is: " + questions[questionIndex].answer;
     }
 
     questionIndex++;
-    // repeat with the rest of questions 
+    
     if (questionIndex < questions.length) {
         nextQuestion();
     } else {
-        // if no more question, run game over function
+        // gameover function
         gameOver();
     }
 }
@@ -148,19 +148,19 @@ function chooseC() { checkAnswer(2); }
 
 function chooseD() { checkAnswer(3); }
 
-// when all questions are answered or timer reaches 0, game over
+
 function gameOver() {
-    summary.style.display = "block";
+   summary.style.display = "block";
     questionDiv.style.display = "none";
     startDiv.style.display = "none";
     timer.style.display = "none";
     timesUp.style.display = "block";
 
-    // show final score
+     //will show final score
     finalScore.textContent = correctAns;
 }
 
-// enter initial and store highscore in local storage
+// stores highscore in local storage
 function storeHighScores(event) {
     event.preventDefault();
 
@@ -176,7 +176,7 @@ function storeHighScores(event) {
     summary.style.display = "none";
     highScoreSection.style.display = "block";   
 
-    // store scoring scores
+    
     var savedHighScores = localStorage.getItem("high scores");
     var scoresArray;
 
@@ -194,7 +194,7 @@ function storeHighScores(event) {
     console.log(userScore);
     scoresArray.push(userScore);
 
-    // stringify array in order to store in local
+   
     var scoresArrayString = JSON.stringify(scoresArray);
     window.localStorage.setItem("high scores", scoresArrayString);
     
@@ -202,7 +202,7 @@ function storeHighScores(event) {
     showHighScores();
 }
 
-// function to show high scores
+// function showing high scores
 var i = 0;
 function showHighScores() {
 
@@ -215,8 +215,8 @@ function showHighScores() {
 
     var savedHighScores = localStorage.getItem("high scores");
 
-    // check if there is any in local storage
-    if (savedHighScores === null) {
+    // checking if any in local storage
+    if (savedHighScores === undefined) {
         return;
     }
     console.log(savedHighScores);
@@ -230,9 +230,7 @@ function showHighScores() {
     }
 }
 
-/**
- * ADD EVENT LISTENERS
- */
+// event listeners
 
 startQuizBtn.addEventListener("click", newQuiz);
 choiceA.addEventListener("click", chooseA);
@@ -256,5 +254,4 @@ goBackBtn.addEventListener("click", function() {
 clearHighScoreBtn.addEventListener("click", function(){
     window.localStorage.removeItem("high scores");
     listOfHighScores.innerHTML = "High Scores Cleared!";
-    listOfHighScores.setAttribute("style", "font-family: 'Archivo', sans-serif; font-style: italic;")
 });
