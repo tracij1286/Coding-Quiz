@@ -62,7 +62,7 @@ var clearHighScoreBtn = document.getElementById("clearHighScoreBtn");
 var viewHighScore = document.getElementById("viewHighScore");
 var listOfHighScores = document.getElementById("listOfHighScores");
 
-// define other variables
+// defining other variables
 var correctAns = 0;
 var questionNum = 0;
 var scoreResult;
@@ -86,7 +86,7 @@ function newQuiz() {
     var startTimer = setInterval(function() {
         totalTime--;
         timeRemaining.textContent = totalTime;
-        if(totalTime <= 0) {
+        if(totalTime == 0) {
             clearInterval(startTimer);
             if (questionIndex < questions.length - 1) {
                 gameOver();
@@ -98,7 +98,7 @@ function newQuiz() {
 };
 
 
-// questions/choices
+// question choice functions
 function showQuiz() {
     nextQuestion();
 }
@@ -127,7 +127,7 @@ function checkAnswer(answer) {
         // deducts 10 second from timer
         totalTime -= 10;
         timeRemaining.textContent = totalTime;
-        answerCheck.textContent = "Wrong! The correct answer is: " + questions[questionIndex].answer;
+        answerCheck.textContent = "Incorrect answer! The correct answer is: " + questions[questionIndex].answer;
     }
 
     questionIndex++;
