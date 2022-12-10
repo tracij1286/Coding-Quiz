@@ -13,7 +13,7 @@ I learned to utilize javascript elements, functions and strings and how to store
 
 ![alt text](assets/images/screenshot.png)
 
-## Credits (Sited Pages)
+## Credits (A few Sited Pages)
 
 
 

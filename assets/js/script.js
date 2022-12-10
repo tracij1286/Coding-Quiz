@@ -1,6 +1,4 @@
-
-// Defined questions for quiz
- var questions = [
+const questions = [
     {
         question: "Which of the following keywords is used to define a variable in Javascript?",
         choices: ["a. set", "b. div", "c. Both A and B", "d. var"],
@@ -34,33 +32,33 @@
 ];
 
 // references to elements
-var timer = document.getElementById("timer");
-var timesUp = document.getElementById("timesUp");
-var timeRemaining = document.getElementById("timeRemaining");
+const timer = document.getElementById("timer");
+const timesUp = document.getElementById("timesUp");
+const timeRemaining = document.getElementById("timeRemaining");
 
-var startDiv = document.getElementById("start");
-var startQuizBtn = document.getElementById("start-quiz-button");
+const startDiv = document.getElementById("start");
+const startQuizBtn = document.getElementById("start-quiz-button");
 
-var questionDiv = document.getElementById("questionDiv");
-var questionTitle = document.getElementById("questionTitle");
-var choiceA = document.getElementById("btn0");
-var choiceB = document.getElementById("btn1");
-var choiceC = document.getElementById("btn2");
-var choiceD = document.getElementById("btn3");
-var answerCheck = document.getElementById("answerCheck");
+const questionDiv = document.getElementById("questionDiv");
+const questionTitle = document.getElementById("questionTitle");
+const choiceA = document.getElementById("btn0");
+const choiceB = document.getElementById("btn1");
+const choiceC = document.getElementById("btn2");
+const choiceD = document.getElementById("btn3");
+const answerCheck = document.getElementById("answerCheck");
 
-var summary = document.getElementById("summary");
-var submitInitialBtn = document.getElementById("submitInitialBtn");
-var initialInput = document.getElementById("initialInput");
-var all = document.getElementById("all");
+const summary = document.getElementById("summary");
+const submitInitialBtn = document.getElementById("submitInitialBtn");
+const initialInput = document.getElementById("initialInput");
+const all = document.getElementById("all");
 
-var highScoreSection = document.getElementById("highScoreSection");
-var finalScore = document.getElementById("finalScore");
+const highScoreSection = document.getElementById("highScoreSection");
+const finalScore = document.getElementById("finalScore");
 
-var goBackBtn = document.getElementById("goBackBtn");
-var clearHighScoreBtn = document.getElementById("clearHighScoreBtn"); 
-var viewHighScore = document.getElementById("viewHighScore");
-var listOfHighScores = document.getElementById("listOfHighScores");
+const goBackBtn = document.getElementById("goBackBtn");
+const clearHighScoreBtn = document.getElementById("clearHighScoreBtn");
+const viewHighScore = document.getElementById("viewHighScore");
+const listOfHighScores = document.getElementById("listOfHighScores");
 
 // defining other variables
 var correctAns = 0;
@@ -83,16 +81,16 @@ function newQuiz() {
     timer.style.display = "block";
     timesUp.style.display = "none";
 
-    var startTimer = setInterval(function() {
+    var startTimer = setInterval(function () {
         totalTime--;
         timeRemaining.textContent = totalTime;
-        if(totalTime == 0) {
+        if (totalTime == 0) {
             clearInterval(startTimer);
             if (questionIndex < questions.length - 1) {
                 gameOver();
             }
         }
-    },1000);
+    }, 1000);
 
     showQuiz();
 };
@@ -121,7 +119,7 @@ function checkAnswer(answer) {
     if (questions[questionIndex].answer == questions[questionIndex].choices[answer]) {
         //  adds 1 score to final score
         correctAns++;
-        
+
         answerCheck.textContent = "Correct!";
     } else {
         // deducts 10 second from timer
@@ -131,7 +129,7 @@ function checkAnswer(answer) {
     }
 
     questionIndex++;
-    
+
     if (questionIndex < questions.length) {
         nextQuestion();
     } else {
@@ -150,13 +148,13 @@ function chooseD() { checkAnswer(3); }
 
 
 function gameOver() {
-   summary.style.display = "block";
+    summary.style.display = "block";
     questionDiv.style.display = "none";
     startDiv.style.display = "none";
     timer.style.display = "none";
     timesUp.style.display = "block";
 
-     //will show final score
+    //will show final score
     finalScore.textContent = correctAns;
 }
 
@@ -168,15 +166,15 @@ function storeHighScores(event) {
     if (initialInput.value == "") {
         alert("Please enter your initials!");
         return;
-    } 
+    }
 
     startDiv.style.display = "none";
     timer.style.display = "none";
     timesUp.style.display = "none";
     summary.style.display = "none";
-    highScoreSection.style.display = "block";   
+    highScoreSection.style.display = "block";
 
-    
+
     var savedHighScores = localStorage.getItem("high scores");
     var scoresArray;
 
@@ -194,10 +192,10 @@ function storeHighScores(event) {
     console.log(userScore);
     scoresArray.push(userScore);
 
-   
+
     var scoresArrayString = JSON.stringify(scoresArray);
     window.localStorage.setItem("high scores", scoresArrayString);
-    
+
     // show current highscores
     showHighScores();
 }
@@ -238,20 +236,20 @@ choiceB.addEventListener("click", chooseB);
 choiceC.addEventListener("click", chooseC);
 choiceD.addEventListener("click", chooseD);
 
-submitInitialBtn.addEventListener("click", function(event){ 
+submitInitialBtn.addEventListener("click", function (event) {
     storeHighScores(event);
 });
 
-viewHighScore.addEventListener("click", function(event) { 
+viewHighScore.addEventListener("click", function (event) {
     showHighScores(event);
 });
 
-goBackBtn.addEventListener("click", function() {
+goBackBtn.addEventListener("click", function () {
     startDiv.style.display = "block";
     highScoreSection.style.display = "none";
 });
 
-clearHighScoreBtn.addEventListener("click", function(){
+clearHighScoreBtn.addEventListener("click", function () {
     window.localStorage.removeItem("high scores");
     listOfHighScores.innerHTML = "High Scores Cleared!";
 });
